@@ -12,12 +12,34 @@
 # 4974 --> 7974
 
 def max_division_by_3(num):
+    three = 3
+    list_num = []
+    for el in str(num):
+        list_num.append(el)
+    max_num = 9
+    # Найдем сумму цифр, так как если сумма делится на 3, то все число делится на 3
+    sum_num = 0
+    for n in list_num:
+        sum_num += int(n)
+    # Проверим, сколько не хватает до деления на 3, чтобы потом знать на сколько увеличивать цифру
+    div_thr = three - (sum_num % three)
+    # Идем по цифрам и смотрим разницу
+    for i, n in enumerate(list_num):
+        if (max_num - int(n)) >= div_thr:
+            list_num[i] = str(int(n) + div_thr + ((max_num - int(n) - div_thr) // three) * three)
+            break
+    # Собираем обратно в число и делаем интом
+    new_num = int(''.join(list_num))
 
+    # Так можно было бы сделать, если бы в list_num лежали цифры не строками, а интами
+    # list_num.reverse()
+    # # Собираем обратно число
+    # for i, n in enumerate(list_num):
+    #     new_num += n * 10**i
 
     return new_num
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
-
 
 data = [
     379, 810, 981, 4974, 996, 9000, 15, 0, 9881, 9984, 9876543210, 98795432109879543210
