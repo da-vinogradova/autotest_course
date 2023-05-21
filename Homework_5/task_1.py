@@ -11,8 +11,7 @@ def letter_stat(our_str):
     letters_dict = {}
     for el in our_str:
         if el not in letters_dict.keys():
-            letters_dict.update({f'{el}': (our_str.count(el))})
-    # Здесь нужно написать код
+            letters_dict.update({el: our_str.count(el)})
     return letters_dict
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
