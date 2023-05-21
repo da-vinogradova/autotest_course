@@ -7,7 +7,15 @@
 
 
 def repeats(our_str):
-    # Здесь нужно написать код
+    letters_dict = {}
+    new_str = ''
+    for el in our_str:
+        if el not in letters_dict.keys():
+            letters_dict.update({el: 1})
+            new_str += el + '_' + '1'
+        else:
+            letters_dict.update({el: letters_dict.get(el) + 1})
+            new_str += el + '_' + f'{letters_dict.get(el)}'
     return new_str
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
