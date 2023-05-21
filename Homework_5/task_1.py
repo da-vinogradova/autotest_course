@@ -7,6 +7,11 @@
 
 
 def letter_stat(our_str):
+    # Создали пустой словарь
+    letters_dict = {}
+    for el in our_str:
+        if el not in letters_dict.keys():
+            letters_dict.update({f'{el}': (our_str.count(el))})
     # Здесь нужно написать код
     return letters_dict
 
