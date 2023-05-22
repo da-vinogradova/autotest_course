@@ -5,12 +5,15 @@
 # local_function должна изменить значение переменной msg на значение 2
 
 def global_function():
-  msg = 1
-  def local_function():
-    nonlocal msg
-    msg = 2
-  local_function()
-  return msg
+    msg = 1
+
+    def local_function():
+        nonlocal msg
+        msg = 2
+
+    local_function()
+    return msg
+
 
 global_function()
 
