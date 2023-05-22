@@ -25,7 +25,7 @@ def everything_for_your_cat(cats_data):
         # сразу же через join склеиваем ФИО хозяина и записываем это ключом
         # в значение словаря добавляем пустой список, который можно расширяем кличкой и возрастом кота
         cats_dict.setdefault(' '.join(el[2:]), []).append(el[0]+', '+str(el[1]))
-    for k,v in cats_dict.items():
+    for k, v in cats_dict.items():
         # собираем финальную нам строку
         our_str += str(k) + ': ' + '; '.join(v) + '\n'
     return our_str
