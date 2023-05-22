@@ -7,7 +7,11 @@
 
 
 def letter_stat(our_str):
-    # Здесь нужно написать код
+    # Создали пустой словарь
+    letters_dict = {}
+    for el in our_str:
+        if el not in letters_dict.keys():
+            letters_dict.update({el: our_str.count(el)})
     return letters_dict
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
