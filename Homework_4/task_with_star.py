@@ -13,9 +13,10 @@
 
 def max_division_by_3(num):
     three = 3
-    list_num = []
-    for el in str(num):
-        list_num.append(el)
+    list_num=list(str(num))
+    # list_num = []
+    # for el in str(num):
+    #     list_num.append(el)
     max_num = 9
     # Найдем сумму цифр, так как если сумма делится на 3, то все число делится на 3
     sum_num = 0
