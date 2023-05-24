@@ -58,7 +58,6 @@ class PersonInfo:
                 str1 += let
         # добавили в словарь к каждой букве количество ее вхождений
         let_dict = dict.fromkeys(set(str1))
-        let_dict = dict()
         for let in str1:
             let_dict.update({let: str1.count(let)})
 
