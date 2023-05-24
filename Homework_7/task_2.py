@@ -21,7 +21,56 @@
 # т.к. буква "т" встречается 4 раза, "а" 3 раза, 'о' 2 раза, остальные по одной. Сумма трёх самых частых букв 4+3+2 = 9.
 # 1337*32*9 = 385056
 
-# Здесь пишем код
+class PersonInfo:
+
+    def __init__(self, name, age, *args):
+        self.name = name
+        self.age = age
+        self.dep_tuple = args
+
+    def short_name(self):
+        """
+        возвращает строку Фамилия И.
+        :return: строка с ФИО
+        """
+        fio = self.name.split(' ')
+        name_str = fio[1] + ' ' + fio[0][0] + '.'
+        return name_str
+
+    def path_deps(self):
+        """
+        возвращает путь "Головное подразделение --> ... --> Конечное подразделение"
+        :return: путь
+        """
+        way = ' --> '.join(self.dep_tuple)
+        print(way)
+        return way
+
+    def new_salary(self):
+        """
+        Функция для вычисления проиндексированной ЗП
+        :return: новая сумма
+        """
+        str1 = ''
+        # собрали строку из букв
+        for el in self.dep_tuple:
+            for let in el:
+                str1 += let
+        # добавили в словарь к каждой букве количество ее вхождений
+        let_dict = dict.fromkeys(set(str1))
+        let_dict = dict()
+        for let in str1:
+            let_dict.update({let: str1.count(let)})
+
+        # Отсортировали словарь, чтобы в конце были три наибольших числа, посчитали сумму.
+        num_sum = 0
+        for num in sorted(let_dict.values())[-3:]:
+            num_sum += num
+        print(num_sum)
+        salary = 1337 * self.age * num_sum
+        return salary
+
+# PersonInfo('Александр Шленский', 32, 'Разработка', 'УК', 'Автотесты').path_deps()
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 
