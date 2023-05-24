@@ -15,9 +15,9 @@ def global_changes():
     number = 5
     global string
     string = 'Hello, dear friend'
-    return (number, string)
+    return number, string
 
-print(global_changes())
+global_changes()
 
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
