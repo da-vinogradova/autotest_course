@@ -23,10 +23,66 @@
 #   3. ЗАЩИЩЕННЫЙ (protected) атрибут fare - Стоимость проезда
 # У класса должно быть СВОЙСТВО how_long, которое вычисляет время за прохождение маршрута по формуле max_speed/(4*path)
 
-# Здесь пишем код
+
+class PublicTransport:
+
+    def __init__(self, brand, engine_power, year, color, max_speed):
+        self.brand = brand
+        self._engine_power = engine_power  # одно подчеркивание - protected
+        self.year = year
+        self.color = color
+        self.max_speed = max_speed
+
+    @property
+    def info(self):
+        """
+        Свойство, которое выводит на печать информацию о:
+        марке, цвете, годе выпуска и мощности двигателя
+        :return:
+        """
+        print(self.brand, self.color, self.year, self.max_speed)
+        return
+
+
+# Bus наследуется от PublicTransport
+class Bus(PublicTransport):
+
+    def __init__(self, brand, engine_power, year, color, max_speed, passengers, park, fare):
+        super().__init__(brand, engine_power, year, color, max_speed)
+        self.passengers = passengers
+        self.__park = park  # два подчеркивания - private
+        self._fare = fare  # одно подчеркивание - protected
+
+    @property
+    def park(self):
+        return self.__park
+
+    @park.setter
+    def park(self, park):
+        assert 9999 > park >= 1000
+        self.__park = park
+
+
+class Tram(PublicTransport):
+
+    def __init__(self, brand, engine_power, year, color, max_speed, route, path, fare):
+        super().__init__(brand, engine_power, year, color, max_speed)
+        self.__route = route
+        self.path = path
+        self._fare = fare
+
+    @property
+    def how_long(self):
+        """
+        вычисляет время прохождениz маршрута по формуле max_speed/(4*path)
+        :return: время прохождениz маршрута
+        """
+        time = self.max_speed / (4 * self.path)
+        return time
 
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
+
 transport = PublicTransport('Автомобиль', 500, 2040, 'Фиолетовый', 300)
 first_bus = Bus('ЛиАЗ', 210, 2015, 'Зеленый', 100, 70, 1232, 32)
 second_bus = Bus('VOLGABUS', 320, 2019, 'Желтый', 110, 39, 1111, 32)
