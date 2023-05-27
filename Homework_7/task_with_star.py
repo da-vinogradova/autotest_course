@@ -8,7 +8,53 @@
 # RomanNums('MMMCCLXIII').from_roman() --> 3263
 # RomanNums('CMXCIX').is_palindrome() --> True
 
-# Здесь пишем код
+class RomanNums:
+    def __init__(self, number):
+        self.number = number
+
+    def from_roman(self):
+        """
+        переводит римскую запись числа в арабскую
+        """
+        arab_num = 0
+        dict_arab_num = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        rome_num_len = len(self.number)
+        i = 1
+        while 0 < i < rome_num_len:
+                # Нужно взять текущую и следующую цифру и посмотреть, что ключа у следующей цифры в словаре меньше
+                # тогда можем смело писать текущую цифру
+                if int(dict_arab_num.get(self.number[i - 1])) >= int(dict_arab_num.get(self.number[i])):
+                        arab_num += dict_arab_num.get(self.number[i - 1])
+                if int(dict_arab_num.get(self.number[i - 1])) < int(dict_arab_num.get(self.number[i])):
+                        arab_num += (int(dict_arab_num.get(self.number[i])) - int(dict_arab_num.get(self.number[i - 1])))
+                        arab_num -= int(dict_arab_num.get(self.number[i]))
+                # Увеличение счетчика
+                i += 1
+
+        # Эта строчка нужна для обработки ситуации, когда остается последняя цифра. Либо изначально была единственная
+        arab_num += dict_arab_num.get(self.number[-1])
+
+        return arab_num
+
+    def is_palindrome(self):
+        """
+        метод определяет, является ли арабское число палиндромом (True - является, иначе False)
+        т.е. имеет ли одинаковое значение число при чтении слева направо и справа налево
+        :return:
+        """
+        str_arab_num = str(self.from_roman())
+        is_polindrome = True
+        # Найдем середину отрезка
+        mediana = round(len(str_arab_num) / 2)
+        i = 0
+        while mediana > 0 and is_polindrome:
+            if str_arab_num[i] != str_arab_num[-(i+1)]:
+                is_polindrome = False
+            i += 1
+            mediana -= 1
+        print(is_polindrome)
+        return is_polindrome
+
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 
@@ -36,7 +82,6 @@ data = [RomanNums('MMMCCLXIII').from_roman,
         RomanNums('XXX').is_palindrome,
         RomanNums('D').is_palindrome,
         ]
-
 
 test_data = [3263, 134, 86, 1405, 978, 3404, 910, 2388, 2008, 1179, 3795, 988, 999, 444,
              True, True, False, False, True, True, False, False]
