@@ -16,6 +16,18 @@
 
 import unittest  # Не удалять
 
+
+def treatment_sum(our_tuple):
+    if len(our_tuple) == 2:
+        try:
+            return our_tuple[0] + our_tuple[1]
+        except TypeError:
+            return 'Нельзя сложить эти данные'
+    elif len(our_tuple) < 2:
+        return 'Недостаточно данных'
+    else:
+        raise Exception('Много данных')
+
 # Здесь пишем код
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
