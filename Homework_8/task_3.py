@@ -7,6 +7,18 @@
 # Если исключения не произошло, то функция возвращает сумму всех координат
 
 
+def segment(tuple1, tuple2):
+    try:
+        x1 = tuple1[0]
+        y1 = tuple1[1]
+        x2 = tuple2[0]
+        y2 = tuple2[1]
+
+        return x1 + y1 + x2 + y2
+    except Exception as e:
+        # Переворачиваем строку
+        new_str = e.__str__()[::-1]
+        return new_str
 # Здесь пишем код
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
