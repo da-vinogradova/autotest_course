@@ -36,6 +36,8 @@ class RomanNums:
 
         return arab_num
 
+
+
     def is_palindrome(self):
         """
         метод определяет, является ли арабское число палиндромом (True - является, иначе False)
