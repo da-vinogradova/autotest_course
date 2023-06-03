@@ -32,24 +32,27 @@
 
 
 import datetime
+from pathlib import Path
 
 
 def func_log(func_to_decor):
     """Декоратор, который может принимать аргумент file_log (Путь до файла)"""
-    def wrapper():
-        res = func_to_decor.__name__ + ' вызвана ' + func_to_decor()
 
-        # ДОБАВИТЬ передачу в декторатор путь до файла и всю работу с ним
-        # with open(file_log, 'a') as log_file:
-        #     log_file.write(res)
+    def wrapper(file_log='log.txt'):
+        res = func_to_decor.__name__ + " вызвана " + func_to_decor(file_log)
+        # Теперь нашу доработанную функцию надо записать в файл
+        # Создаем относительный путь до файла с заданием. Из-за того, что не знаем слэши, разбиваем папки через запятую
+        path = Path.cwd().joinpath(file_log)
+        with open(path, 'w') as func_info:
+            func_info.write(res)
         return res
     return wrapper
 
-
-@func_log
-def my_file():
+def my_file(file_log):
     """ Функция возвращает время, когда была вызвана в формате %d.%m %H:%M:%S"""
     call_time = datetime.datetime.now().strftime("%d.%m %H:%M:%S")
     return call_time
 
-print(func_log(my_file)())
+
+my_file = func_log(my_file)
+my_file()
