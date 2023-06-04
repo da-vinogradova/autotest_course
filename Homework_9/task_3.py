@@ -9,33 +9,33 @@ path = Path('test_file', 'task_3.txt')
 # Получим абсолютный путь, соединив текущую директорию и нужный файл
 abs_path = Path.cwd().joinpath(path)
 
-# Откроем файл и вычитаем данные
-task_3_file = open(abs_path)
-task3_text = task_3_file.read()
-# оставим только значения, которые в дальнейшем отсортируем
-split_text = task3_text.split('\n')
+# Используем контекстный менеджер
+with open(abs_path, 'r') as fr:
+    task3_text = fr.read()
 
-# Удалим пустые
-i = 0
-while i < len(split_text):
-    if split_text[i] == '':
-        split_text.pop(i)
-    i += 1
+    # разделим все по покупкам
+    split_text = task3_text.split('\n\n')
 
-# Перегоним значения в инт
-for c, el in enumerate(split_text):
-    if el != '':
-        split_text[c] = int(el)
+    # список, в котором будет сумма всех покупок
+    sum_list = []
 
-print(sorted(split_text))
+    # для каждой покупки выделим цену товаров
+    for el in split_text:
+        split_purchase = el.split('\n')
 
-three_most_expensive_purchases = 0
-for num in sorted(split_text)[-3:]:
-    three_most_expensive_purchases += num
+        sum_num = 0
+        # в каждой покупке найдем сумму товаров и запишем ее в в список
+        for num in split_purchase:
+            if num != '':
+                sum_num += int(num)
+        sum_list.append(sum_num)
 
-# Нужно отсортировать и сложить 3 максимальных
-print(three_most_expensive_purchases)
+    # Отсортируем стоимость покупок и сложим 3 максимальных
+    three_most_expensive_purchases = 0
+    for num in sorted(sum_list)[-3:]:
+        three_most_expensive_purchases += num
+
 
 # Здесь пишем код
 
-# assert three_most_expensive_purchases == 202346
+assert three_most_expensive_purchases == 202346
