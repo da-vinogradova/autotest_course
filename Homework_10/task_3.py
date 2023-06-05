@@ -12,5 +12,19 @@ def all_division(*arg1):
     return division
 
 
+@pytest.mark.parametrize("a, b, result", [pytest.param(16, 4, 4, marks=pytest.mark.smoke),
+                                          (10, 1.6, 6.25),
+                                          (-7, 1, -7),
+                                          (0, 4, 0),
+                                          pytest.param(5, 0, 0, marks=pytest.mark.skip("Потому что тест по должен падать"))])
+def test_all(a, b, result):
+    assert all_division(a, b) == result
 
 
+
+
+@pytest.mark.with_zero
+def test_div_zero():
+    # Указали, что в результате выполнения теста должно упасть исключение
+    with pytest.raises(ZeroDivisionError):
+        all_division(5, 0)

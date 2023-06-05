@@ -18,7 +18,7 @@ def all_division(*arg1):
 
 @pytest.mark.smoke
 def test_div_int():
-    assert all_division(16, 4, 2, 1) == 2
+    assert all_division(16, 4) == 4
 
 @pytest.mark.without_zero
 def test_div_double():
