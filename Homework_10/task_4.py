@@ -4,3 +4,8 @@
 
 import pytest
 
+class MyTest:
+
+
+    def test_first(self):
+        pass
