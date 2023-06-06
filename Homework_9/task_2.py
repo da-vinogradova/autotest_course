@@ -46,12 +46,12 @@ def func_log(func_to_decor):
         wrapper.__doc__ = func_to_decor.__doc__
 
         # Строка, которая берет имя декорируемой функции и добавляет время ее вызова
-        res = func_to_decor.__name__ + " вызвана " + datetime.datetime.now().strftime("%d.%m %H:%M:%S")
+        res = '\n' + func_to_decor.__name__ + " вызвана " + datetime.datetime.now().strftime("%d.%m %H:%M:%S")
         func_to_decor(file_log)
         # Теперь нашу доработанную функцию надо записать в файл
         # Создаем относительный путь до файла с заданием. Из-за того, что не знаем слэши, разбиваем папки через запятую
         path = Path.cwd().joinpath(file_log)
-        with open(path, 'w') as func_info:
+        with open(path, 'a') as func_info:
             func_info.write(res)
         return res
     return wrapper
@@ -64,7 +64,7 @@ def my_file(file_log):
 
 
 f = func_log(my_file)
-f()
+f('log_test.txt')
 
 # help, когда нет декоратора
 help(my_file)
