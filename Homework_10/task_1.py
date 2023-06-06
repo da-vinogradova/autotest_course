@@ -18,11 +18,11 @@ import string
 
 
 def generate_random_name():
-    first_len = random.randint(1, 15)
-    second_len = random.randint(1, 15)
-
-    gen_str = ''
     while True:
+        first_len = random.randint(1, 15)
+        second_len = random.randint(1, 15)
+        gen_str = ''
+
         i = 1
         # Генерируем первое слово
         while i <= first_len:
