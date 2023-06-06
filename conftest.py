@@ -2,8 +2,6 @@
 import datetime
 import pytest
 
-
-# Надо с этой что-то делать!!!!! Не работает
 @pytest.fixture(scope='class')
 def fixture_for_class():
     start_time = datetime.datetime.now()
