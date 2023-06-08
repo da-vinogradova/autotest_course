@@ -9,21 +9,17 @@ import pytest
 class Test:
 
     def test_first(self):
-        print('\n')
         print("Это первый тест")
         time.sleep(1)
 
     def test_second(self, test_exec_time):
-        print('\n')
         print("Это второй тест")
         time.sleep(1)
 
     def test_third(self, test_exec_time):
-        print('\n')
         print("Это третий тест")
         time.sleep(2)
 
     def test_fourth(self):
-        print('\n')
         print("Это четвертый тест")
         time.sleep(1)

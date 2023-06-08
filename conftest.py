@@ -2,13 +2,15 @@
 import datetime
 import pytest
 
+
 @pytest.fixture(scope='class')
 def fixture_for_class():
     start_time = datetime.datetime.now()
+    yield
     print('Время начала выполнения класса: ', start_time)
-    yield start_time
     end_time = datetime.datetime.now()
-    print('Время окончания выполнения класса: ', end_time)
+    print('\n','Время окончания выполнения класса: ', end_time)
+
 
 @pytest.fixture()
 def test_exec_time():

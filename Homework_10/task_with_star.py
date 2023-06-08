@@ -6,6 +6,6 @@ import pytest
 
 
 @pytest.mark.id_check(1, 2, 3)
-def test():
-    # Здесь пишем код
-    pass
+def test(request):
+    a = request.node.own_markers[0].args
+    print("В маркер передано: ", a)
