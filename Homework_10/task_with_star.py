@@ -7,5 +7,6 @@ import pytest
 
 @pytest.mark.id_check(1, 2, 3)
 def test():
-    # Здесь пишем код
-    pass
+    a = pytest.mark.__doc__
+    print(a)
+    print("В маркер передано: ", )
