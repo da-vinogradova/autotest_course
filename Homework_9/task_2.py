@@ -51,7 +51,7 @@ def func_log(func_to_decor):
         # Теперь нашу доработанную функцию надо записать в файл
         # Создаем относительный путь до файла с заданием. Из-за того, что не знаем слэши, разбиваем папки через запятую
         path = Path.cwd().joinpath(file_log)
-        with open(path, 'w') as func_info:
+        with open(path, 'a') as func_info:
             func_info.write(res)
         return res
     return wrapper
