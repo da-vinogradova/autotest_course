@@ -22,7 +22,7 @@ try:
     # Проверяем, что открылся именно нужный нам сайт
     assert driver.current_url == sbis_site, 'Не верно открыт сайт'
     # Перейти в раздел "Контакты"
-    contacts = driver.find_element(By.CSS_SELECTOR, '.sbisru-Header__menu-item-1 [href = \'/contacts\']')
+    contacts = driver.find_element(By.CSS_SELECTOR, '.sbisru-Header__menu-item-1 [href = "/contacts"]')
     assert contacts.text == contacts_text, "Не верная вкладка или название вкладки"
     assert contacts.accessible_name == contacts_text, "Не верная вкладка или название вкладки"
     # На отображение проверять обязательно
